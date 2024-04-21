@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-deployment
+  labels:
+    app: todolist
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todolist
+  template:
+    metadata:
+      labels:
+        app: todolist
+    spec:
+      containers:
+      - name: todolist-container
+        image: rc015/front:0.0.5.RELEASE
+        ports:
+        - containerPort: 5001
+        env:
+        - name: VM_URL
+          value: "35.237.62.91"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todolist-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: todolist
+  ports:
+    - protocol: TCP
+      port: 5001
+      targetPort: 5001
