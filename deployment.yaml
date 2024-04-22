@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: todolist-container
-        image: rc015/front:0.0.5.RELEASE
+        image: rc015/front:0.0.6.RELEASE
         ports:
         - containerPort: 5001
         env:
