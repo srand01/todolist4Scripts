@@ -11,9 +11,10 @@ DATABASE = 'todolist.db'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+vm_URL = os.environ.get("VM_URL")
+
 @app.route("/")
 def show_list():
-    vm_URL = os.environ.get("VM_URL")
     resp = requests.get(f"http://{vm_URL}:5001/api/items")
     resp = resp.json()
     return render_template('index.html', todolist=resp)
