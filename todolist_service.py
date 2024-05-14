@@ -50,8 +50,6 @@ def get_items():
 def add_item():
     db = get_db()
     username = request.username
-    print('username POST')
-    print(username)
     db.execute('INSERT INTO entries (what_to_do, due_date, username) VALUES (?, ?, ?)',
            [request.json['what_to_do'], request.json['due_date'], username])
     db.commit()
@@ -127,4 +125,4 @@ def close_db(error):
 
 if __name__ == '__main__':
     create_table()
-    app.run(port=5001)
+    app.run("0.0.0.0", port=5001)
